@@ -9,7 +9,7 @@ import pydicom.errors
 import warnings
 
 with atheris.instrument_imports():
-    from pydicom import dcmread
+    import pydicom
 
 logging.disable(logging.CRITICAL)
 warnings.filterwarnings("ignore")
@@ -19,7 +19,8 @@ warnings.filterwarnings("ignore")
 def TestOneInput(data):
     try:
         with io.BytesIO(data) as dcm_file:
-            dcmread(dcm_file, force=True)
+            ds = pydicom.dcmread(dcm_file, force=True)
+            pydicom.filewriter.dcmwrite('/dev/null', ds)
     except (pydicom.errors.InvalidDicomError, pydicom.errors.BytesLengthException) as e:
         return -1
     except struct.error:

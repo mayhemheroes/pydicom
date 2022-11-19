@@ -19,8 +19,7 @@ warnings.filterwarnings("ignore")
 def TestOneInput(data):
     try:
         with io.BytesIO(data) as dcm_file:
-            ds = pydicom.dcmread(dcm_file, force=True)
-            pydicom.filewriter.dcmwrite('/dev/null', ds)
+            pydicom.dcmread(dcm_file, force=True)
     except (pydicom.errors.InvalidDicomError, pydicom.errors.BytesLengthException) as e:
         return -1
     except struct.error:

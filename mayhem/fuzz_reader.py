@@ -7,8 +7,17 @@ import logging
 import sys
 import warnings
 
-with atheris.instrument_imports(enable_loader_override=True):
+include_imports = [
+    'pydicom.overlays,'
+    'pydicom.data',
+    'pydicom.overlays.numpy_handler',
+    'pydicom.data',
+    'pydicom.data.data_manager',
+    'pydicom.data.download'
+]
+with atheris.instrument_imports(include=['pydicom.ma.extras"']):
     import pydicom
+
 import pydicom.errors
 
 logging.disable(logging.CRITICAL)

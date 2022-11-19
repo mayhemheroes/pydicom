@@ -5,11 +5,11 @@ import atheris
 import io
 import logging
 import sys
-import pydicom.errors
 import warnings
 
-with atheris.instrument_imports():
+with atheris.instrument_imports(enable_loader_override=True):
     import pydicom
+import pydicom.errors
 
 logging.disable(logging.CRITICAL)
 warnings.filterwarnings("ignore")

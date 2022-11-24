@@ -20,13 +20,16 @@ with atheris.instrument_imports(include=['pydicom.ma.extras"']):
 
 import pydicom.errors
 
+logging.disable(logging.CRITICAL)
+warnings.filterwarnings("ignore")
+
 
 @atheris.instrument_func
 def TestOneInput(data):
     try:
         with io.BytesIO(data) as dcm_file:
             pydicom.dcmread(dcm_file)
-    except (pydicom.errors.InvalidDicomError, pydicom.errors.BytesLengthException, struct.error, NotImplementedError, OSError):
+    except (pydicom.errors.InvalidDicomError, pydicom.errors.BytesLengthException, struct.error, NotImplementedError, OSError, AttributeError):
         return -1
 
 

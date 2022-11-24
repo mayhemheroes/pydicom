@@ -28,8 +28,8 @@ warnings.filterwarnings("ignore")
 def TestOneInput(data):
     try:
         with io.BytesIO(data) as dcm_file:
-            pydicom.dcmread(dcm_file, force=True)
-    except (pydicom.errors.InvalidDicomError, pydicom.errors.BytesLengthException) as e:
+            pydicom.dcmread(dcm_file)
+    except (pydicom.errors.InvalidDicomError, pydicom.errors.BytesLengthException, OSError) as e:
         return -1
     except struct.error:
         return -1
